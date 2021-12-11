@@ -1,0 +1,41 @@
+
+.menu {
+	position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+	background-color: #db34d3;
+  color: white;
+  padding: 15px 35px;
+  font-size: 16px;
+	border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #db34d383;
+  color: white;
+}
+
+.dropdown-content {
+	display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Zobrazí rozbalovací nabídku (použije JS k přidání této třídy do kontejneru .dropdown-content, když uživatel klikne na rozbalovací tlačítko)  */
+
+.show {display:block;}
