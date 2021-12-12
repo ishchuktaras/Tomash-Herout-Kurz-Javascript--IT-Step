@@ -14,3 +14,12 @@ ul {
 ul li {
 	display: inline-block;
 }
+ul li a {
+	color: #292929;
+	text-decoration: none;
+	padding: 15px;
+	display: block;
+}
+ul li:hover {
+	background-color: lightgray;
+}
