@@ -34,3 +34,6 @@ ul ul li {
 	display: block;
 	background-color: #e3e3e3;
 }
+ul li:hover ul {
+	display: block;
+}
