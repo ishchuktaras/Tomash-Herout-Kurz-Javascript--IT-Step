@@ -1,0 +1,23 @@
+.tlacitko, .objevujici{
+    position: relative;
+}
+.skryt{
+    display: none;
+}
+menu > ul{
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+.chyba{
+    border: 1px solid red;
+}
+#modalni-okno{
+    border: 1px solid black;
+    background: white;
+    padding: 12px;
+    position: fixed;
+    top: 10px;
+    display: none;
+}
+
