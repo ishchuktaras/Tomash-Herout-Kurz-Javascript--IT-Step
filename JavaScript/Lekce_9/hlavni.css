@@ -1,3 +1,6 @@
+body{
+    margin: 0;
+}
 .tlacitko, .objevujici{
     position: relative;
 }
@@ -30,5 +33,17 @@ menu > ul{
 #modalni-okno h2{
     text-align: center;
     margin: 0;
+}
+.objevujici{
+    background: #ccc;
+    margin-bottom: 12px;
+    margin-left: 12px;
+}
+.cist-vice, .cist-vice-aktivni{
+    display: none;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
 }
 

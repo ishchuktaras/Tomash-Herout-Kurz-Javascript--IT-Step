@@ -1,45 +1,21 @@
+function modalniOkno(nadpis, obsah, css){
+    $('#modalni-okno').addClass(css);
+    $('#modalni-okno').css('display', 'block');
+    $('#modalni-okno h2').html(nadpis);
+    $('#modalni-okno-obsah').html(obsah);
+    $('#zavrit').click(function(){
+        $('#modalni-okno').removeAttr('style'); 
+    });
+    let vyska_modal_okna = $('#modalni-okno').outerHeight();
+    let vyska_okna_prohlizece = $(window).height();
+    let horni_odsazeni = (vyska_okna_prohlizece - vyska_modal_okna)/2;
+    $('#modalni-okno').css('top', horni_odsazeni);
+    
+}
 $(".tlacitko").click(function(){
     $(".tlacitko").css('color','red');
     $(".tlacitko").animate({left: '250px'}, 4000);
 });
-function animaceDivu(){
-    let objevujici = $('.objevujici');
-    let vyska_okna = window.innerHeight;
-    let objevujic_pole = Array();
-    let vyska;
-    let vyska_elementu;
-    let pozice_elementu;
-    objevujici.each(function(){
-        vyska_elementu = $(this).height();
-        pozice_elementu = $(this).position().top;
-        objevujic_pole.push(pozice_elementu);
-        if(vyska_okna <  pozice_elementu){
-            $(this).css('left', '-100vw');
-        }
-    });
-    //console.log(objevujic_pole);
-    
-    objevujici.css('opacity', 0);
-    
-    setTimeout(function(){
-        objevujici.animate({'opacity': 1}, 5000);
-    }, 3000);
-    $(document).scroll(function(){
-        vyska = $('html').scrollTop();
-        
-        for(let i=0; i < objevujic_pole.length; i++){
-            objevujici.each(function(){
-                if(vyska =>  objevujic_pole[i]){
-                    //console.log(vyska + ' - ' + objevujic_pole[i]);
-                    $(this).css('left', '0vw');
-                    
-                }
-            });
-        }
-        
-        
-    });
-}
 function menu(){
     $('#menu ul ul').addClass('skryt');
     $('#menu > ul > li > a').click(function(){
@@ -84,12 +60,32 @@ function formular(){
         }else{
             $('#pohlavi').removeClass('chyba');
         }
+//        kontrola souhlasu obchodních podmínek
+        let hodnota_podminky = $('#podminky').prop("checked");
+        if(!hodnota_podminky){
+            pole_chyb.push('Nedali jste souhlas s obchodními podmínkami.');
+            $('#podminky').parent().addClass('chyba');
+        }
+//        kontrola hlasovani
+        let hlasovani1 = $('input[name="hlasovani"]')[0].checked;
+        let hlasovani2 = $('input[name="hlasovani"]')[1].checked;
+        if(!hlasovani1 && !hlasovani2){
+            pole_chyb.push('Nehlasovali jste, zvolte buď ano nebo ne.');
+            $('input[name="hlasovani"]').parent().addClass('chyba');
+        }
+        
+        console.log(hlasovani2);
         // zaverecna kontrola
         if(pole_chyb.length > 0){
-            alert(pole_chyb);
-            modalniOkno('Chyba');
-            return false;
-            
+//            setavovani HTML kodu s vypisem chyb
+            let chyby_promenna = '<ul>';
+            for(let i = 0; i < pole_chyb.length; i++){
+                chyby_promenna += '<li>'+pole_chyb[i]+'</li>';
+            }
+            chyby_promenna += '</ul>';
+//            Zavolani okna a predani chyb ve forme argumnetu
+            modalniOkno('Chyba', chyby_promenna, 'cervena');
+            return false;    
         }
         
     });
@@ -115,15 +111,34 @@ function formular(){
         }
     }); 
 }
-function modalniOkno(nadpis){
-    $('#modalni-okno').css('display', 'block');
-    $('#modalni-okno h2').html(nadpis);
+function cistVice(){
+   $('.cist-vice-tl').click(function(){
+       let toto = $(this).siblings('.cist-vice');
+       $('.cist-vice').not(toto).hide(1000);
+       toto.toggle(1000);
+   }); 
+}
+function responzivni(){
+    let sirka_monitoru = window.innerWidth;
+    let x;
+    if(sirka_monitoru > 1800){
+        x = (sirka_monitoru/3)-20;
+    }else if(sirka_monitoru > 1200){
+        x = (sirka_monitoru/2)-20;
+    }else{
+        x = sirka_monitoru;
+    }
+    $('.objevujici').width(x);
 }
 $(document).ready(function(){
-    animaceDivu();
     menu();
     menu2();
     formular();
+    cistVice();
+    responzivni();
+});
+$(window).resize(function(){
+    responzivni();
 });
 
 /*
