@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+}
+.tlacitko, .objevujici{
+    position: relative;
+}
+.skryt{
+    display: none;
+}
+menu > ul{
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+.chyba{
+    border: 1px solid red;
+}
+#modalni-okno{
+    border: 1px solid black;
+    background: white;
+    padding: 12px;
+    position: fixed;
+    top: 10px;
+    left: calc(35vw - 13px);
+    display: none;
+    width: 30vw;
+    max-height: 80vh;
+    overflow: auto;
+}
+#modalni-okno.cervena{
+    border-color: red;
+}
+#modalni-okno h2{
+    text-align: center;
+    margin: 0;
+}
+.objevujici{
+    background: #ccc;
+    margin-bottom: 12px;
+    margin-left: 12px;
+}
+.cist-vice, .cist-vice-aktivni{
+    display: none;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+
