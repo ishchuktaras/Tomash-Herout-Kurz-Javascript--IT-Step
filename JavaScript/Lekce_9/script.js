@@ -121,9 +121,9 @@ function cistVice(){
 function responzivni(){
     let sirka_monitoru = window.innerWidth;
     let x;
-    if(sirka_monitoru > 1800){
+    if(sirka_monitoru > 1200){
         x = (sirka_monitoru/3)-20;
-    }else if(sirka_monitoru > 1200){
+    }else if(sirka_monitoru > 900){
         x = (sirka_monitoru/2)-20;
     }else{
         x = sirka_monitoru;
