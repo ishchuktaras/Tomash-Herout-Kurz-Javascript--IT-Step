@@ -134,9 +134,9 @@ function animace(){
     const pocet_obrazku = $('#animace ul li').length;
     let aktivni = 1;
     let rychlost_animace = 3000;
+    let nahodne_cislo;
     function opakovani(){
         $('#animace ul li:nth-of-type('+aktivni+')').animate({'opacity': 0});
-            let nahodne_cislo ;
             do {
                 nahodne_cislo = Math.floor(Math.random() * (5 - 1)) + 1;
               }
