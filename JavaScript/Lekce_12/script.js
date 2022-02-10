@@ -74,7 +74,6 @@ function formular(){
             $('input[name="hlasovani"]').parent().addClass('chyba');
         }
         
-        console.log(hlasovani2);
         // zaverecna kontrola
         if(pole_chyb.length > 0){
 //            setavovani HTML kodu s vypisem chyb
@@ -129,6 +128,10 @@ function responzivni(){
         x = sirka_monitoru;
     }
     $('.objevujici').width(x);
+//    upravi vysku animace podle vysky obrazku
+    let vyska_obrazku = $('#animace ul li:first-of-type img').height();
+    $('#animace ul').height(vyska_obrazku);
+    
 }
 function animace(){
     const pocet_obrazku = $('#animace ul li').length;
@@ -149,8 +152,45 @@ function animace(){
     }
     setTimeout(function(){ 
         opakovani();
+    }, rychlost_animace);    
+}
+function animacePosun(){
+    const rychlost_animace = 4000;
+    const delka_kroku = $('#animace-posun ul li').width();
+    let pocitani_kroku = 1;
+    const pocet_obrazku = $('#animace-posun ul li').length;
+    const sirka_okna = window.innerWidth;
+    const limit_posunu = Math.ceil(sirka_okna / delka_kroku);
+    let aktualni_pozice = 0;
+    function opakovani(){
+        aktualni_pozice = pocitani_kroku * delka_kroku; 
+        $('#animace-posun ul').animate({'left': '-'+aktualni_pozice+'px'}, 2000);
+        if(pocitani_kroku < (pocet_obrazku - limit_posunu)){
+            pocitani_kroku++;
+        }else{
+            pocitani_kroku = 1;
+        }
+        setTimeout(function(){ 
+            opakovani();
+        }, rychlost_animace);
+    }
+    setTimeout(function(){ 
+        opakovani();
     }, rychlost_animace);
     
+}
+function cenik(){
+    $('#cenik-form input[type="number"]').blur(function(){
+        let ks; let cena; let celkem = 0;
+       $('#cenik-form input[type="number"]').each(function(){
+            ks = $(this).val();
+            cena = $(this).attr('cena');
+            celkem = celkem + (ks * cena);
+       }); 
+       
+       $('#celkem').text(celkem);
+
+    });
 }
 $(document).ready(function(){
     menu();
@@ -159,7 +199,8 @@ $(document).ready(function(){
     cistVice();
     responzivni();
     animace();
-    console.log();
+    animacePosun();
+    cenik();
 });
 $(window).resize(function(){
     responzivni();
