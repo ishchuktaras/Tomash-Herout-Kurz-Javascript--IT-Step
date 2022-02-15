@@ -189,7 +189,6 @@ function cenik(){
        }); 
        
        $('#celkem').text(celkem);
-
     });
 }
 $(document).ready(function(){
